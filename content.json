@@ -1,7 +1,11 @@
 {
   "site": {
-    "logo_image": "",
+    "logo": {
+      "path": "logo1.png",
+      "alt": "SkyNext UAV Solutions"
+    },
     "home_url": "https://skynext.co.il/",
+    "home_button": "← דף הבית",
     "nav": [
       {
         "label": "הקורס",
@@ -19,8 +23,7 @@
         "label": "שאלות ותשובות",
         "href": "#faq"
       }
-    ],
-    "home_button": "← דף הבית"
+    ]
   },
   "hero": {
     "label": "הצעד הראשון לקריירה בעולם הכטב\"מ",
@@ -172,7 +175,7 @@
   "instructor": {
     "tag": "המדריך",
     "title": "הכירו את המדריך",
-    "image": "",
+    "image": "/media/images/cms-image-test.jpg",
     "alt": "שמעון מנטאל",
     "name": "שמעון מנטאל",
     "role": "בוחן כטב\"מ עד 2 טון מטעם רת\"א, מקים מערך הכטב\"מ המשטרתי",
@@ -218,8 +221,6 @@
     "email_placeholder": "אימייל *"
   },
   "footer": {
-    "copyright": "© 2026 Sky Next",
-    "site_text": "skynext.co.il",
-    "rights": "כל הזכויות שמורות"
+    "text": "© 2026 Sky Next | skynext.co.il | כל הזכויות שמורות"
   }
 }

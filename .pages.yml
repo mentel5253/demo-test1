@@ -2,10 +2,14 @@ media:
   - name: images
     label: תמונות
     input: media/images
-    output: media/images
+    output: /media/images
     categories: [image]
-    extensions: [jpg, jpeg, png, webp]
+    extensions: [png, jpg, jpeg, webp]
     rename: safe
+
+settings:
+  content:
+    merge: true
 
 content:
   - name: course
@@ -18,17 +22,27 @@ content:
         label: אתר ותפריט
         type: object
         fields:
-          - name: logo_image
+          - name: logo
             label: לוגו
-            type: image
-            options:
-              media: images
-              path: media/images
+            type: object
+            fields:
+              - name: path
+                label: קובץ לוגו
+                type: image
+                options:
+                  media: images
+                  path: media/images
+              - name: alt
+                label: טקסט חלופי
+                type: string
           - name: home_url
-            label: כתובת דף הבית
+            label: קישור דף הבית
+            type: string
+          - name: home_button
+            label: טקסט כפתור דף הבית
             type: string
           - name: nav
-            label: תפריט
+            label: תפריט ניווט
             type: object
             list:
               collapsible:
@@ -41,9 +55,6 @@ content:
               - name: href
                 label: קישור
                 type: string
-          - name: home_button
-            label: כפתור דף הבית
-            type: string
 
       - name: hero
         label: אזור פתיחה
@@ -228,6 +239,7 @@ content:
             options:
               media: images
               path: media/images
+              extensions: [jpg, jpeg, png, webp]
           - name: alt
             label: טקסט חלופי לתמונה
             type: string
@@ -245,7 +257,7 @@ content:
             type: text
 
       - name: faq
-        label: שאלות נפוצות
+        label: שאלות ותשובות
         type: object
         fields:
           - name: tag
@@ -289,31 +301,25 @@ content:
             label: הערת תשלום
             type: string
           - name: payment_button
-            label: טקסט כפתור תשלום
+            label: טקסט כפתור
             type: string
           - name: first_name_placeholder
-            label: שדה שם פרטי
+            label: שם פרטי
             type: string
           - name: last_name_placeholder
-            label: שדה שם משפחה
+            label: שם משפחה
             type: string
           - name: phone_placeholder
-            label: שדה טלפון
+            label: טלפון
             type: string
           - name: email_placeholder
-            label: שדה אימייל
+            label: אימייל
             type: string
 
       - name: footer
         label: תחתית האתר
         type: object
         fields:
-          - name: copyright
-            label: זכויות יוצרים
-            type: string
-          - name: site_text
-            label: טקסט האתר
-            type: string
-          - name: rights
-            label: זכויות
-            type: string
+          - name: text
+            label: טקסט תחתית
+            type: text
