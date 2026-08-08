@@ -850,48 +850,146 @@ document.getElementById('reg-form').addEventListener('submit', async function(e)
 (async function () {
   try {
     const c = await fetch('content.json', { cache: 'no-store' }).then(r => r.json());
+    const $ = (s, root=document) => root.querySelector(s);
+    const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
+    const setText = (el, value) => { if (el && value !== undefined) el.textContent = value; };
+    const setHTML = (el, value) => { if (el && value !== undefined) el.innerHTML = value; };
 
-    const heroLabel = document.querySelector('.hero-label');
-    const h1 = document.querySelector('.hero-inner h1');
-    const h2 = document.querySelector('.hero-inner h2');
-    const heroP = document.querySelector('.hero-inner > p');
-    const buttons = document.querySelectorAll('.hero-buttons a');
-    const price = document.querySelector('#contact [style*="font-size:52px"]');
-    const stats = document.querySelectorAll('.stat-card');
+    // Navigation
+    const navLinks = $$('#navLinks li a');
+    (c.site.nav || []).forEach((item, i) => {
+      if (!navLinks[i]) return;
+      setText(navLinks[i], item.label);
+      navLinks[i].href = item.href;
+    });
+    const homeBtn = $('.btn-home');
+    setText(homeBtn, c.site.home_button);
+    if (homeBtn && c.site.home_url) homeBtn.href = c.site.home_url;
+    const logo = $('nav .logo img');
+    if (logo && c.site.logo_image) logo.src = c.site.logo_image;
 
-    if (heroLabel) heroLabel.textContent = c.hero_label;
-    if (h1) h1.innerHTML = `${c.hero_title}<br>${c.hero_title_line2}`;
-    if (h2) h2.textContent = c.hero_subtitle;
-    if (heroP) heroP.textContent = c.hero_description;
-    if (buttons[0]) buttons[0].textContent = c.primary_button;
-    if (buttons[1]) buttons[1].textContent = c.secondary_button;
-    if (price) price.innerHTML = `&#8362;${Number(c.price).toLocaleString('he-IL')}`;
+    // Hero
+    const hero = $('.hero-inner');
+    setText($('.hero-label', hero), c.hero.label);
+    const h1 = $('h1', hero);
+    if (h1) setHTML(h1, `${c.hero.title_line1}<br>${c.hero.title_line2}`);
+    setText($('h2', hero), c.hero.subtitle);
+    setText($('p', hero), c.hero.description);
+    const heroButtons = $$('.hero-buttons a', hero);
+    if (heroButtons[0]) { setText(heroButtons[0], c.hero.primary_button.text); heroButtons[0].href = c.hero.primary_button.href; }
+    if (heroButtons[1]) { setText(heroButtons[1], c.hero.secondary_button.text); heroButtons[1].href = c.hero.secondary_button.href; }
 
-    c.stats.forEach((s, i) => {
-      if (!stats[i]) return;
-      const n = stats[i].querySelector('h3');
-      const t = stats[i].querySelector('p');
-      if (n) n.textContent = s.number;
-      if (t) t.textContent = s.text;
+    // Stats
+    $$('.hero-stats .stat-card').forEach((card, i) => {
+      const item = c.stats[i];
+      if (!item) return;
+      setText($('h3', card), item.number);
+      setText($('p', card), item.text);
     });
 
-    const instructorName = document.querySelector('.instructor-name');
-    const instructorTitle = document.querySelector('.instructor-title');
-    if (instructorName) instructorName.textContent = c.instructor_name;
-    if (instructorTitle) instructorTitle.textContent = c.instructor_title;
+    // About
+    const about = $('#about');
+    setText($('.section-tag', about), c.about.tag);
+    setHTML($('h2', about), c.about.title);
+    setText($('.section-inner > p:not(.section-tag)', about), c.about.description);
+    $$('.feature-card', about).forEach((card, i) => {
+      const item = c.about.features[i];
+      if (!item) return;
+      setText($('h3', card), item.title);
+      setText($('p', card), item.text);
+    });
 
-    const faqItems = document.querySelectorAll('.faq-item');
-    c.faq.forEach((item, i) => {
-      if (!faqItems[i]) return;
-      const q = faqItems[i].querySelector('.faq-question');
-      const a = faqItems[i].querySelector('.faq-answer p');
+    // Small UAV
+    const small = $('#small-uav');
+    setText($('.section-tag', small), c.small_uav.tag);
+    setHTML($('h2', small), c.small_uav.title);
+    const smallPs = $$('.section-inner > p:not(.section-tag)', small);
+    setText(smallPs[0], c.small_uav.paragraph1);
+    setText(smallPs[1], c.small_uav.paragraph2);
+
+    // Jobs
+    const jobs = $('#jobs');
+    setText($('.section-tag', jobs), c.jobs.tag);
+    setHTML($('h2', jobs), c.jobs.title);
+    setText($('.section-inner > p:not(.section-tag)', jobs), c.jobs.description);
+    $$('.jobs-grid > div', jobs).forEach((el, i) => setText(el, c.jobs.items[i]));
+
+    // Why Sky Next
+    const why = $('#why-skynext');
+    setText($('.section-tag', why), c.why_skynext.tag);
+    setHTML($('h2', why), c.why_skynext.title);
+    setText($('.section-inner > p:not(.section-tag)', why), c.why_skynext.description);
+    $$('.why-list li', why).forEach((el, i) => setText(el, c.why_skynext.items[i]));
+
+    // Success package
+    const pkg = $('#success-package');
+    setText($('.section-tag', pkg), c.success_package.tag);
+    setHTML($('h2', pkg), c.success_package.title);
+    setText($('.section-inner > p:not(.section-tag)', pkg), c.success_package.description);
+    $$('.package-list > li', pkg).forEach((el, i) => {
+      const item = c.success_package.items[i];
+      if (!item) return;
+      setText($('.icon', el), item.icon);
+      setText($('h3', el), item.title);
+      setText($('p', el), item.text);
+    });
+
+    // Instructor
+    const instructor = $('#instructor');
+    setText($('.section-tag', instructor), c.instructor.tag);
+    setHTML($('h2', instructor), c.instructor.title);
+    const instructorImg = $('.instructor-photo img', instructor);
+    if (instructorImg) {
+      instructorImg.alt = c.instructor.alt || '';
+      if (c.instructor.image) instructorImg.src = c.instructor.image;
+    }
+    setText($('.instructor-name', instructor), c.instructor.name);
+    setText($('.instructor-title', instructor), c.instructor.role);
+    const bioPs = $$('.instructor-bio > p', instructor);
+    setText(bioPs[0], c.instructor.paragraph1);
+    setText(bioPs[1], c.instructor.paragraph2);
+
+    // FAQ
+    const faq = $('#faq');
+    setText($('.section-tag', faq), c.faq.tag);
+    setHTML($('h2', faq), c.faq.title);
+    $$('.faq-item', faq).forEach((item, i) => {
+      const data = c.faq.items[i];
+      if (!data) return;
+      const q = $('.faq-question', item);
+      const arrow = $('.faq-arrow', q);
       if (q) {
-        const arrow = q.querySelector('.faq-arrow');
-        q.textContent = item.question;
-        if (arrow) q.appendChild(arrow);
+        q.firstChild && (q.firstChild.nodeValue = data.question + ' ');
       }
-      if (a) a.textContent = item.answer;
+      setText($('.faq-answer p', item), data.answer);
     });
+
+    // Contact / price
+    const contact = $('#contact');
+    setText($('.section-tag', contact), c.contact.tag);
+    setHTML($('.contact-header h2', contact), c.contact.title);
+    setText($('.contact-header > p:not(.section-tag)', contact), c.contact.description);
+    const priceEl = $('#contact div[style*="font-size:52px"]');
+    if (priceEl) setText(priceEl, `₪${Number(c.contact.price).toLocaleString('he-IL')}`);
+    const note = $('#contact div[style*="font-size:52px"] + div');
+    setText(note, c.contact.payment_note);
+    const submit = $('#r-btn');
+    setText(submit, c.contact.payment_button);
+    setText($('#r-fn'), c.contact.first_name_placeholder);
+    setText($('#r-ln'), c.contact.last_name_placeholder);
+    setText($('#r-ph'), c.contact.phone_placeholder);
+    setText($('#r-em'), c.contact.email_placeholder);
+    // Placeholder text for inputs
+    if ($('#r-fn')) $('#r-fn').placeholder = c.contact.first_name_placeholder;
+    if ($('#r-ln')) $('#r-ln').placeholder = c.contact.last_name_placeholder;
+    if ($('#r-ph')) $('#r-ph').placeholder = c.contact.phone_placeholder;
+    if ($('#r-em')) $('#r-em').placeholder = c.contact.email_placeholder;
+
+    // Footer
+    const footer = $('footer p');
+    if (footer) {
+      setHTML(footer, `${c.footer.copyright} | <a href="${c.site.home_url}">${c.footer.site_text}</a> | ${c.footer.rights}`);
+    }
   } catch (e) {
     console.warn('CMS content could not be loaded:', e);
   }

@@ -1,3 +1,12 @@
+media:
+  - name: images
+    label: תמונות
+    input: media/images
+    output: media/images
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+
 content:
   - name: course
     label: קורס 25 ק"ג
@@ -5,34 +14,84 @@ content:
     path: content.json
     format: json
     fields:
-      - name: hero_label
-        label: תווית עליונה
-        type: string
-      - name: hero_title
-        label: כותרת ראשית
-        type: string
-      - name: hero_title_line2
-        label: שורה שנייה בכותרת
-        type: string
-      - name: hero_subtitle
-        label: כותרת משנה
-        type: string
-      - name: hero_description
-        label: תיאור
-        type: text
-      - name: primary_button
-        label: טקסט כפתור ראשי
-        type: string
-      - name: secondary_button
-        label: טקסט כפתור משני
-        type: string
-      - name: price
-        label: מחיר
-        type: number
-      - name: stats
-        label: נתונים
+      - name: site
+        label: אתר ותפריט
         type: object
-        list: true
+        fields:
+          - name: logo_image
+            label: לוגו
+            type: image
+            options:
+              media: images
+              path: media/images
+          - name: home_url
+            label: כתובת דף הבית
+            type: string
+          - name: nav
+            label: תפריט
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{label}"
+            fields:
+              - name: label
+                label: טקסט
+                type: string
+              - name: href
+                label: קישור
+                type: string
+          - name: home_button
+            label: כפתור דף הבית
+            type: string
+
+      - name: hero
+        label: אזור פתיחה
+        type: object
+        fields:
+          - name: label
+            label: תווית עליונה
+            type: string
+          - name: title_line1
+            label: כותרת ראשית - שורה 1
+            type: string
+          - name: title_line2
+            label: כותרת ראשית - שורה 2
+            type: string
+          - name: subtitle
+            label: כותרת משנה
+            type: string
+          - name: description
+            label: תיאור
+            type: text
+          - name: primary_button
+            label: כפתור ראשי
+            type: object
+            fields:
+              - name: text
+                label: טקסט
+                type: string
+              - name: href
+                label: קישור
+                type: string
+          - name: secondary_button
+            label: כפתור משני
+            type: object
+            fields:
+              - name: text
+                label: טקסט
+                type: string
+              - name: href
+                label: קישור
+                type: string
+
+      - name: stats
+        label: נתונים בולטים
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{number} — {text}"
         fields:
           - name: number
             label: מספר
@@ -40,20 +99,221 @@ content:
           - name: text
             label: תיאור
             type: string
-      - name: instructor_name
-        label: שם המדריך
-        type: string
-      - name: instructor_title
-        label: תפקיד המדריך
-        type: string
-      - name: faq
-        label: שאלות ותשובות
+
+      - name: about
+        label: למה דווקא עכשיו
         type: object
-        list: true
         fields:
-          - name: question
-            label: שאלה
+          - name: tag
+            label: תווית
             type: string
-          - name: answer
-            label: תשובה
+          - name: title
+            label: כותרת
+            type: string
+          - name: description
+            label: תיאור
             type: text
+          - name: features
+            label: כרטיסי יתרונות
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: כותרת
+                type: string
+              - name: text
+                label: טקסט
+                type: text
+
+      - name: small_uav
+        label: מהו כטב"מ קטן
+        type: object
+        fields:
+          - name: tag
+            label: תווית
+            type: string
+          - name: title
+            label: כותרת
+            type: string
+          - name: paragraph1
+            label: פסקה 1
+            type: text
+          - name: paragraph2
+            label: פסקה 2
+            type: text
+
+      - name: jobs
+        label: אפשרויות תעסוקה
+        type: object
+        fields:
+          - name: tag
+            label: תווית
+            type: string
+          - name: title
+            label: כותרת
+            type: string
+          - name: description
+            label: תיאור
+            type: text
+          - name: items
+            label: תחומי תעסוקה
+            type: string
+            list: true
+
+      - name: why_skynext
+        label: למה Sky Next
+        type: object
+        fields:
+          - name: tag
+            label: תווית
+            type: string
+          - name: title
+            label: כותרת
+            type: string
+          - name: description
+            label: תיאור
+            type: text
+          - name: items
+            label: נקודות
+            type: string
+            list: true
+
+      - name: success_package
+        label: מעטפת ההצלחה
+        type: object
+        fields:
+          - name: tag
+            label: תווית
+            type: string
+          - name: title
+            label: כותרת
+            type: string
+          - name: description
+            label: תיאור
+            type: text
+          - name: items
+            label: מרכיבי המעטפת
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: icon
+                label: אייקון
+                type: string
+              - name: title
+                label: כותרת
+                type: string
+              - name: text
+                label: טקסט
+                type: text
+
+      - name: instructor
+        label: המדריך
+        type: object
+        fields:
+          - name: tag
+            label: תווית
+            type: string
+          - name: title
+            label: כותרת
+            type: string
+          - name: image
+            label: תמונת המדריך
+            type: image
+            options:
+              media: images
+              path: media/images
+          - name: alt
+            label: טקסט חלופי לתמונה
+            type: string
+          - name: name
+            label: שם
+            type: string
+          - name: role
+            label: תפקיד
+            type: string
+          - name: paragraph1
+            label: פסקה 1
+            type: text
+          - name: paragraph2
+            label: פסקה 2
+            type: text
+
+      - name: faq
+        label: שאלות נפוצות
+        type: object
+        fields:
+          - name: tag
+            label: תווית
+            type: string
+          - name: title
+            label: כותרת
+            type: string
+          - name: items
+            label: שאלות ותשובות
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{question}"
+            fields:
+              - name: question
+                label: שאלה
+                type: string
+              - name: answer
+                label: תשובה
+                type: text
+
+      - name: contact
+        label: הרשמה ומחיר
+        type: object
+        fields:
+          - name: tag
+            label: תווית
+            type: string
+          - name: title
+            label: כותרת
+            type: string
+          - name: description
+            label: תיאור
+            type: text
+          - name: price
+            label: מחיר
+            type: number
+          - name: payment_note
+            label: הערת תשלום
+            type: string
+          - name: payment_button
+            label: טקסט כפתור תשלום
+            type: string
+          - name: first_name_placeholder
+            label: שדה שם פרטי
+            type: string
+          - name: last_name_placeholder
+            label: שדה שם משפחה
+            type: string
+          - name: phone_placeholder
+            label: שדה טלפון
+            type: string
+          - name: email_placeholder
+            label: שדה אימייל
+            type: string
+
+      - name: footer
+        label: תחתית האתר
+        type: object
+        fields:
+          - name: copyright
+            label: זכויות יוצרים
+            type: string
+          - name: site_text
+            label: טקסט האתר
+            type: string
+          - name: rights
+            label: זכויות
+            type: string
