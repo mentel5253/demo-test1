@@ -1,0 +1,59 @@
+content:
+  - name: course
+    label: קורס 25 ק"ג
+    type: file
+    path: content.json
+    format: json
+    fields:
+      - name: hero_label
+        label: תווית עליונה
+        type: string
+      - name: hero_title
+        label: כותרת ראשית
+        type: string
+      - name: hero_title_line2
+        label: שורה שנייה בכותרת
+        type: string
+      - name: hero_subtitle
+        label: כותרת משנה
+        type: string
+      - name: hero_description
+        label: תיאור
+        type: text
+      - name: primary_button
+        label: טקסט כפתור ראשי
+        type: string
+      - name: secondary_button
+        label: טקסט כפתור משני
+        type: string
+      - name: price
+        label: מחיר
+        type: number
+      - name: stats
+        label: נתונים
+        type: object
+        list: true
+        fields:
+          - name: number
+            label: מספר
+            type: string
+          - name: text
+            label: תיאור
+            type: string
+      - name: instructor_name
+        label: שם המדריך
+        type: string
+      - name: instructor_title
+        label: תפקיד המדריך
+        type: string
+      - name: faq
+        label: שאלות ותשובות
+        type: object
+        list: true
+        fields:
+          - name: question
+            label: שאלה
+            type: string
+          - name: answer
+            label: תשובה
+            type: text

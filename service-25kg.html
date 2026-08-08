@@ -845,5 +845,58 @@ document.getElementById('reg-form').addEventListener('submit', async function(e)
 });
 </script>
 
+
+<script>
+(async function () {
+  try {
+    const c = await fetch('content.json', { cache: 'no-store' }).then(r => r.json());
+
+    const heroLabel = document.querySelector('.hero-label');
+    const h1 = document.querySelector('.hero-inner h1');
+    const h2 = document.querySelector('.hero-inner h2');
+    const heroP = document.querySelector('.hero-inner > p');
+    const buttons = document.querySelectorAll('.hero-buttons a');
+    const price = document.querySelector('#contact [style*="font-size:52px"]');
+    const stats = document.querySelectorAll('.stat-card');
+
+    if (heroLabel) heroLabel.textContent = c.hero_label;
+    if (h1) h1.innerHTML = `${c.hero_title}<br>${c.hero_title_line2}`;
+    if (h2) h2.textContent = c.hero_subtitle;
+    if (heroP) heroP.textContent = c.hero_description;
+    if (buttons[0]) buttons[0].textContent = c.primary_button;
+    if (buttons[1]) buttons[1].textContent = c.secondary_button;
+    if (price) price.innerHTML = `&#8362;${Number(c.price).toLocaleString('he-IL')}`;
+
+    c.stats.forEach((s, i) => {
+      if (!stats[i]) return;
+      const n = stats[i].querySelector('h3');
+      const t = stats[i].querySelector('p');
+      if (n) n.textContent = s.number;
+      if (t) t.textContent = s.text;
+    });
+
+    const instructorName = document.querySelector('.instructor-name');
+    const instructorTitle = document.querySelector('.instructor-title');
+    if (instructorName) instructorName.textContent = c.instructor_name;
+    if (instructorTitle) instructorTitle.textContent = c.instructor_title;
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    c.faq.forEach((item, i) => {
+      if (!faqItems[i]) return;
+      const q = faqItems[i].querySelector('.faq-question');
+      const a = faqItems[i].querySelector('.faq-answer p');
+      if (q) {
+        const arrow = q.querySelector('.faq-arrow');
+        q.textContent = item.question;
+        if (arrow) q.appendChild(arrow);
+      }
+      if (a) a.textContent = item.answer;
+    });
+  } catch (e) {
+    console.warn('CMS content could not be loaded:', e);
+  }
+})();
+</script>
+
 </body>
 </html>
