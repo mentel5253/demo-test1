@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קורס כטב"מ עד 25 ק"ג | SkyNext UAV Solutions</title>
+<meta name="description" content="קורס כטב״מ עד 25 ק״ג בהדרכה מקצועית של שמעון מנטאל - בוחן רת״א, טייס אזרחי ומקים בית הספר לכטב״מ של משטרת ישראל.">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { background: #0f1623; font-family: 'Assistant', sans-serif; direction: rtl; color: #fff; overflow-x: hidden; }
+
+/* ===== NAV ===== */
+nav {
+  background: #101725;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 0 28px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+.logo img { height: 46px; width: auto; object-fit: contain; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a {
+  color: #8a9bb8; font-size: 15px; font-weight: 600;
+  text-decoration: none; white-space: nowrap; transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.btn-phone {
+  text-decoration: none;
+  background: linear-gradient(135deg, #b8882a, #d4a843);
+  color: #1a1200; border: none; border-radius: 8px;
+  padding: 9px 16px; font-size: 14px; font-weight: 800;
+  font-family: 'Assistant', sans-serif; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  white-space: nowrap; transition: background 0.2s, transform 0.2s;
+}
+.btn-phone:hover { background: linear-gradient(135deg, #c9a84c, #e8c060); transform: translateY(-1px); }
+.btn-home {
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #8a9bb8;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Assistant', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-home:hover { border-color: #c9a84c; color: #c9a84c; }
+.hamburger {
+  display: none; flex-direction: column; cursor: pointer;
+  gap: 5px; flex-shrink: 0; background: none; border: none; padding: 6px;
+}
+.hamburger span { display: block; width: 25px; height: 3px; background: #c9a84c; border-radius: 2px; }
+
+/* ===== HERO TAG ===== */
+.hero-label {
+  display: inline-block;
+  background: rgba(201,168,75,0.12);
+  border: 1px solid rgba(201,168,75,0.3);
+  color: #c9a84c;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  letter-spacing: 0.06em;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #080e18 0%, #0f1a2e 50%, #0a1420 100%);
+  padding: 90px 48px 70px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 75% 65% at 50% 30%, rgba(201,168,75,0.09) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-inner h1 { font-size: 50px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: #fff; max-width: 800px; }
+.hero-inner h2 { font-size: 26px; font-weight: 700; color: #c9a84c; margin-bottom: 20px; line-height: 1.3; }
+.hero-inner p { color: #8a9bb8; font-size: 17px; line-height: 1.8; max-width: 700px; margin-bottom: 40px; }
+.hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  background: linear-gradient(135deg, #b8882a, #d4a843);
+  color: #1a1200; border: none; border-radius: 10px;
+  padding: 14px 32px; font-size: 16px; font-weight: 800;
+  font-family: 'Assistant', sans-serif; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-primary:hover { background: linear-gradient(135deg, #c9a84c, #e8c060); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; border: 2px solid rgba(201,168,75,0.4);
+  color: #c9a84c; border-radius: 10px; padding: 14px 32px;
+  font-size: 16px; font-weight: 700; font-family: 'Assistant', sans-serif;
+  cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.btn-secondary:hover { background: rgba(201,168,75,0.08); border-color: #c9a84c; transform: translateY(-1px); }
+
+/* ===== DIVIDER ===== */
+.section-divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+}
+
+/* ===== STATS ===== */
+.stats { background: #101725; padding: 60px 48px; }
+.stats-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+}
+.stat-card {
+  background: #1a2235; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 28px 20px; text-align: center; transition: border-color 0.2s;
+}
+.stat-card:hover { border-color: rgba(201,168,75,0.3); }
+.stat-card h3 { font-size: 38px; font-weight: 800; color: #c9a84c; line-height: 1; margin-bottom: 8px; }
+.stat-card p { color: #8a9bb8; font-size: 14px; line-height: 1.5; }
+
+/* ===== SECTION BASE ===== */
+.section { padding: 80px 48px; }
+.section-alt { background: #101725; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-tag { color: #c9a84c; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.section-inner h2 { font-size: 38px; font-weight: 800; margin-bottom: 20px; line-height: 1.25; }
+.section-inner h2 .gold { color: #c9a84c; }
+.section-inner > p { color: #8a9bb8; font-size: 16px; line-height: 1.8; max-width: 720px; margin-bottom: 16px; }
+
+/* ===== FEATURES GRID ===== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+.feature-card {
+  background: #1a2235;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 24px 20px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.feature-card:hover { border-color: rgba(201,168,75,0.3); transform: translateY(-2px); }
+.feature-card h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+.feature-card p { color: #8a9bb8; font-size: 14px; line-height: 1.65; }
+
+/* ===== JOBS GRID ===== */
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 36px;
+}
+.jobs-grid > div {
+  background: #1a2235;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 18px 20px;
+  color: #ccd6e8;
+  font-size: 15px;
+  font-weight: 600;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.jobs-grid > div:hover { border-color: rgba(201,168,75,0.3); transform: translateY(-2px); }
+
+/* ===== WHY LIST ===== */
+.why-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+  max-width: 720px;
+}
+.why-list li {
+  color: #ccd6e8;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 14px 20px;
+  background: #1a2235;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  border-right: 3px solid #c9a84c;
+}
+
+/* ===== INSTRUCTOR ===== */
+.instructor-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 32px;
+}
+.instructor-photo {
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+.instructor-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.instructor-name { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+.instructor-title { color: #c9a84c; font-size: 14px; font-weight: 700; margin-bottom: 20px; line-height: 1.5; }
+.instructor-bio p { color: #8a9bb8; font-size: 15px; line-height: 1.8; margin-bottom: 12px; }
+.instructor-bio p:last-child { margin-bottom: 0; }
+
+/* ===== FAQ ===== */
+.faq-list {
+  max-width: 820px;
+  margin-top: 36px;
+}
+.faq-item {
+  background: #1a2235;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item.active { border-color: rgba(201,168,75,0.35); }
+.faq-question {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #fff;
+  padding: 20px 24px;
+  cursor: pointer;
+  text-align: right;
+  font-size: 16px;
+  font-family: 'Assistant', sans-serif;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: #c9a84c; }
+.faq-item.active .faq-question { color: #c9a84c; }
+.faq-arrow {
+  font-size: 12px;
+  color: #c9a84c;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.faq-item.active .faq-arrow { transform: rotate(180deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.faq-answer p {
+  padding: 0 24px 22px;
+  color: #8a9bb8;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.faq-item.active .faq-answer { max-height: 300px; }
+
+/* ===== CONTACT ===== */
+.contact-section { background: #101725; }
+.contact-header { margin-bottom: 48px; }
+.contact-header h2 { font-size: 38px; font-weight: 800; margin-bottom: 14px; line-height: 1.25; }
+.contact-header h2 .gold { color: #c9a84c; }
+.contact-header p { color: #8a9bb8; font-size: 16px; line-height: 1.8; max-width: 580px; }
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: start;
+}
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: #1a2235;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 14px 18px;
+  color: #fff;
+  font-family: 'Assistant', sans-serif;
+  font-size: 15px;
+  direction: rtl;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: #4a5a72; }
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #c9a84c;
+  box-shadow: 0 0 0 3px rgba(201,168,75,0.1);
+}
+.contact-form textarea { resize: vertical; min-height: 130px; }
+.contact-form button {
+  background: linear-gradient(135deg, #b8882a, #d4a843);
+  color: #1a1200;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 32px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: 'Assistant', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  align-self: flex-start;
+}
+.contact-form button:hover {
+  background: linear-gradient(135deg, #c9a84c, #e8c060);
+  transform: translateY(-1px);
+}
+.contact-details {
+  background: #1a2235;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.contact-details h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.contact-item {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 14px;
+  line-height: 1.7;
+  color: #8a9bb8;
+}
+.contact-item:last-child { border-bottom: none; }
+.contact-item strong { color: #c9a84c; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+.contact-item a { color: #ccd6e8; text-decoration: none; transition: color 0.2s; }
+.contact-item a:hover { color: #c9a84c; }
+
+/* ===== SUCCESS PACKAGE ===== */
+.package-card { background: #1a2235; border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 40px 44px; margin-top: 36px; }
+.package-list { list-style: none; margin: 0; padding: 0; }
+.package-list li { display: flex; align-items: flex-start; gap: 24px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.package-list li:last-child { border-bottom: none; }
+.package-list .icon { font-size: 34px; min-width: 50px; text-align: center; padding-top: 2px; }
+.package-list h3 { color: #fff; margin-bottom: 8px; font-size: 17px; font-weight: 700; }
+.package-list p { margin: 0; color: #8a9bb8; line-height: 1.75; font-size: 15px; }
+@media (max-width: 768px) {
+  .package-card { padding: 24px 20px; }
+  .package-list li { flex-direction: column; gap: 10px; }
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #080e18;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 28px 48px;
+  text-align: center;
+}
+footer p { color: #4a5a72; font-size: 13px; }
+footer a { color: #c9a84c; text-decoration: none; }
+footer a:hover { color: #d4a843; }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  nav { flex-wrap: wrap; height: auto; padding: 10px 16px; }
+  .hamburger { display: flex; order: 1; }
+  .logo { order: 2; margin: 0 auto; }
+  .nav-actions { order: 3; }
+  .nav-links {
+    display: none; flex-direction: column; width: 100%;
+    padding: 12px 0; gap: 0; order: 4;
+    border-top: 1px solid rgba(255,255,255,0.08); margin-top: 8px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { display: block; padding: 12px 8px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .hero { padding: 64px 16px 52px; }
+  .hero-inner h1 { font-size: 30px; }
+  .hero-inner h2 { font-size: 20px; }
+  .hero-inner p { font-size: 15px; }
+  .hero-buttons { flex-direction: column; }
+  .btn-primary, .btn-secondary { justify-content: center; }
+  .stats { padding: 48px 16px; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-card h3 { font-size: 28px; }
+  .section { padding: 56px 16px; }
+  .section-inner h2 { font-size: 26px; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .jobs-grid { grid-template-columns: repeat(2, 1fr); }
+  .instructor-grid { grid-template-columns: 1fr; }
+  .instructor-photo { max-width: 180px; font-size: 48px; }
+  .contact-wrapper { grid-template-columns: 1fr; }
+  .contact-form button { width: 100%; justify-content: center; }
+  footer { padding: 24px 16px; }
+}
+@media (max-width: 480px) {
+  .hero-inner h1 { font-size: 24px; }
+  .stat-card h3 { font-size: 24px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .jobs-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="תפריט">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="https://skynext.co.il/" class="logo">
+    <img src="logo1.png" alt="SkyNext UAV Solutions">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">הקורס</a></li>
+    <li><a href="#jobs">אפשרויות תעסוקה</a></li>
+    <li><a href="#why-skynext">למה Sky Next</a></li>
+    <li><a href="#faq">שאלות ותשובות</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://skynext.co.il/" class="btn-home">← דף הבית</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">הצעד הראשון לקריירה בעולם הכטב"מ</div>
+    <h1>
+      מחפש מקצוע מבוקש?<br>
+      רוצה לפתוח לעצמך דלת להזדמנויות חדשות?
+    </h1>
+    <h2>עולם הכטב"מ מחפש אנשי מקצוע.</h2>
+    <p>
+      תחום הכטב"מ נמצא בצמיחה מתמדת ומציע מגוון רחב של אפשרויות תעסוקה.
+      כעת גם תושבי הצפון יכולים ללמוד קרוב לבית בקורס מקצועי, פרונטלי ובהדרכה אישית.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">אני רוצה לשמוע פרטים</a>
+      <a href="#about" class="btn-secondary">למד עוד</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-card"><h3>10+</h3><p>שנות ניסיון בפיקוד על מערך כטב"מ</p></div>
+    <div class="stat-card"><h3>600+</h3><p>בוגרים שהוכשרו</p></div>
+    <div class="stat-card"><h3>1000+</h3><p>שעות טיסה והדרכה</p></div>
+    <div class="stat-card"><h3>25KG</h3><p>הכשרה לכטב"מ קטן</p></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- למה דווקא עכשיו -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <p class="section-tag">על הקורס</p>
+    <h2>למה דווקא <span class="gold">עכשיו?</span></h2>
+    <p>
+      תחום הכטב"מ נמצא בשנים האחרונות בצמיחה מואצת והפך לכלי עבודה משמעותי במגוון רחב של תחומים.
+      ארגונים, חברות ועסקים משלבים כיום רחפנים כחלק בלתי נפרד מהפעילות היומיומית שלהם,
+      מה שיוצר ביקוש הולך וגדל למפעילי כטב"מ מקצועיים ובעלי הכשרה מתאימה.
+    </p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>📈 תחום בצמיחה</h3>
+        <p>ענף הכטב"מ ממשיך להתפתח בקצב מהיר ומייצר הזדמנויות חדשות.</p>
+      </div>
+      <div class="feature-card">
+        <h3>💼 ביקוש למפעילים</h3>
+        <p>יותר חברות וארגונים מחפשים מפעילי כטב"מ בעלי הכשרה ורישיון.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🚁 מקצוע מגוון</h3>
+        <p>צילום, מדידות, ביטחון, חקלאות, תשתיות, רשויות מקומיות ועוד.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🎓 הכשרה מקצועית</h3>
+        <p>רכישת ידע עיוני ומעשי בהתאם לדרישות רשות התעופה האזרחית.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- מהו כטב"מ קטן -->
+<section class="section section-alt" id="small-uav">
+  <div class="section-inner">
+    <p class="section-tag">מידע כללי</p>
+    <h2>מהו <span class="gold">כטב"מ קטן?</span></h2>
+    <p>
+      כטב"מ קטן הוא כלי טיס בלתי מאויש שמשקלו המרבי בהמראה, כולל הציוד המחובר אליו, אינו עולה על 25 ק"ג.
+      בישראל, הפעלת כטב"מ קטן מוסדרת על ידי רשות התעופה האזרחית (רת"א) בהתאם לתקנות הטיס,
+      במטרה להבטיח הפעלה בטוחה, מקצועית ואחראית.
+    </p>
+    <p>
+      כל מי שמעוניין להפעיל כטב"מ למטרות כלליות או מסחריות נדרש להכיר את הוראות החוק,
+      לעמוד בדרישות הרגולציה ולעבור את ההכשרה המתאימה. במהלך הקורס נלמד את כל הנושאים
+      הנדרשים ונכין אותך בצורה יסודית למבחני רת"א.
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- תחומי תעסוקה -->
+<section class="section" id="jobs">
+  <div class="section-inner">
+    <p class="section-tag">אפשרויות תעסוקה</p>
+    <h2>היכן ניתן <span class="gold">להשתלב לאחר ההכשרה?</span></h2>
+    <p>
+      עולם הכטב"מ פותח דלת להזדמנויות במגוון רחב של תחומים,
+      כאשר הביקוש למפעילים מקצועיים ממשיך לגדול מדי שנה.
+    </p>
+    <div class="jobs-grid">
+      <div>🚁 צילום אווירי</div>
+      <div>📍 מדידות ומיפוי</div>
+      <div>🌾 חקלאות חכמה</div>
+      <div>🏗 פיקוח על תשתיות</div>
+      <div>🏢 נדל"ן ושיווק פרויקטים</div>
+      <div>🛡 ביטחון ואבטחה</div>
+      <div>🏛 רשויות מקומיות</div>
+      <div>💡 יזמות והקמת עסק עצמאי</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- למה Sky Next -->
+<section class="section section-alt" id="why-skynext">
+  <div class="section-inner">
+    <p class="section-tag">למה אנחנו</p>
+    <h2>למה ללמוד דווקא <span class="gold">אצל Sky Next?</span></h2>
+    <p>
+      בחירת בית ספר היא הרבה מעבר לבחירת קורס. היא בחירה במי שילווה אותך בדרך לרישיון,
+      יעניק לך ידע מקצועי ויכין אותך לעולם האמיתי.
+    </p>
+    <ul class="why-list">
+      <li>✔ הדרכה פרונטלית בקבוצות קטנות.</li>
+      <li>✔ ליווי אישי לאורך כל הקורס.</li>
+      <li>✔ מערכת למידה מתקדמת לתרגול עצמי.</li>
+      <li>✔ הכנה מלאה למבחני רשות התעופה האזרחית.</li>
+      <li>✔ ניסיון מקצועי ומבצעי של למעלה מעשור.</li>
+      <li>✔ מאות בוגרים שהוכשרו בהצלחה.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- מעטפת ההצלחה -->
+<section class="section section-alt" id="success-package">
+  <div class="section-inner">
+    <p class="section-tag">מה כולל הקורס</p>
+    <h2>מעטפת ההצלחה של <span class="gold">Sky Next</span></h2>
+    <p>כשאתה מצטרף ל־Sky Next, אתה לא נרשם רק לקורס – אתה מקבל מעטפת מקצועית שלמה,
+       שנבנתה מתוך שנים של ניסיון בהכשרת מפעילי כטב"מ ומטרתה להוביל אותך בביטחון
+       עד לקבלת רישיון המטיס של רשות התעופה האזרחית.</p>
+    <div class="package-card">
+      <ul class="package-list">
+
+        <li>
+          <span class="icon">👨‍🏫</span>
+          <div>
+            <h3>2 מפגשים אחד על אחד בני 4 שעות כל מפגש</h3>
+            <p>שילוב של לידע תאורתי נדרש לצד תרגול מעשי בשטח, הכולל היכרות עם הכטב"מ, הכנה למצבים אמיתיים, בטיחות, מפות ,הכנה לטיסה ועוד... ומענה אישי לכל שאלה.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="icon">📚</span>
+          <div>
+            <h3>חומרי לימוד מקצועיים ועדכניים</h3>
+            <p>גישה מלאה לחומרי לימוד מסודרים ועדכניים בנושאי חוקה, מטאורולוגיה, ידע טכני, בטיחות, ביצועי כטב"מ, ניווט וגורמי אנוש.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="icon">💻</span>
+          <div>
+            <h3>רישיון למערכת SkyNext Learning</h3>
+            <p>גישה מלאה למערכת הלמידה החכמה SkyNext Learning, הכוללת מאות שאלות, מבחני סימולציה, מעקב אחר ההתקדמות, והכנה מיטבית למבחני רת"א – מכל מקום ובכל זמן.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="icon">🎯</span>
+          <div>
+            <h3>הכנה מלאה למבחני רת"א</h3>
+            <p>הכנה מקצועית וממוקדת בהתאם לדרישות העדכניות של רשות התעופה האזרחית, עד להגעה מוכנה ובטוחה למבחן.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="icon">🤝</span>
+          <div>
+            <h3>ליווי אישי עד להצלחה</h3>
+            <p>יחס אישי, זמינות גבוהה ומענה מקצועי לכל שאלה לאורך כל תקופת ההכשרה ועד למעבר מבחני רת"א.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="icon">🧑‍✈️</span>
+          <div>
+            <h3>ללמוד מהמובילים בתחום</h3>
+            <p>ההדרכה מועברת על ידי שמעון מנטאל: טייס אזרחי, בוחן רת"א לכטב"מ עד 2 טון, מפקד מערך הכטב"מ של משטרת ישראל במשך עשור ומקים בית הספר לכטב"מ של משטרת ישראל.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="icon">💬</span>
+          <div>
+            <h3>קהילת Sky Next</h3>
+            <p>הצטרפות לקבוצת WhatsApp סגורה של תלמידי ובוגרי Sky Next, לקבלת מידע מקצועי, עדכונים, שיתוף ידע ותמיכה גם לאחר סיום הקורס.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="icon">💼</span>
+          <div>
+            <h3>חשיפה להזדמנויות תעסוקה</h3>
+            <p>בוגרי Sky Next נהנים מחשיפה למשרות והזדמנויות בתחום הכטב"מ המגיעות אלינו ממעסיקים, חברות וארגונים שונים.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="icon">📢</span>
+          <div>
+            <h3>נשארים מעודכנים גם אחרי הקורס</h3>
+            <p>עדכונים שוטפים על שינויים ברגולציה, נהלים חדשים והתפתחויות בעולם הכטב"מ.</p>
+          </div>
+        </li>
+
+        <li>
+          <span class="icon">🏅</span>
+          <div>
+            <h3>בדרך לרישיון מטיס מטעם רת"א</h3>
+            <p>לאחר השלמת ההכשרה ועמידה בהצלחה בדרישות רשות התעופה האזרחית, תהיה זכאי לקבלת רישיון המטיס בהתאם להוראות הדין.</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- המדריך -->
+<section class="section" id="instructor">
+  <div class="section-inner">
+    <p class="section-tag">המדריך</p>
+    <h2>הכירו את <span class="gold">המדריך</span></h2>
+    <div class="instructor-grid">
+      <div class="instructor-photo">
+        <img src="shimon1.jpg" alt="שמעון מנטאל">
+      </div>
+      <div class="instructor-bio">
+        <div class="instructor-name">שמעון מנטאל</div>
+        <div class="instructor-title">בוחן כטב"מ עד 2 טון מטעם רת"א, מקים מערך הכטב"מ המשטרתי</div>
+        <p>
+          טייס אזרחי, בוחן כטב"מ עד 2 טון מטעם רשות התעופה האזרחית, מקים בית הספר לכטב"מ
+          של משטרת ישראל ומפקד מערך הכטב"מ של משטרת ישראל במשך כעשור.
+        </p>
+        <p>
+          במהלך השנים הכשיר מאות מפעילי כטב"מ, ליווה ארגונים בהקמת מערכים מקצועיים
+          וצבר אלפי שעות טיסה והדרכה בשגרה ובחירום. הניסיון הרב שנצבר בשטח הוא הבסיס
+          להכשרה מקצועית, איכותית ומעשית המועברת בכל קורס.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-alt" id="faq">
+  <div class="section-inner">
+    <p class="section-tag">שאלות ותשובות</p>
+    <h2>שאלות <span class="gold">נפוצות</span></h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          כמה זמן נמשך הקורס?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>הקורס מותאם אישית לצרכי הלומד. משך הקורס נקבע בהתאם לסוג הרישיון הנדרש ולרקע הקיים.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          האם הקורס מוכר על ידי רשות התעופה האזרחית?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>כן. כל הקורסים מוכרים רשמית על ידי רת"א ומסתיימים בבחינה ורישיון מטעם הרשות.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          איפה מתקיים הקורס?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>הקורס מתקיים בצפון הארץ, בעמק הירדן ומאפשר לתושבי האזור ללמוד קרוב לבית. ניתן לתאם גם הכשרה בבית הלקוח.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          האם נדרש ניסיון קודם?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>לא נדרש ניסיון קודם בהפעלת כטב"מ. הקורס מתאים למתחילים וכולל את כל הנושאים מהיסוד.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          מה ההבדל בין כטב"מ קטן לכטב"מ גדול?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>כטב"מ קטן הוא עד 25 ק"ג וכטב"מ גדול הוא עד 2 טון. לכל סוג דרישות רגולציה ורישיון שונים מטעם רת"א.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- REGISTRATION -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner">
+    <div class="contact-header">
+      <p class="section-tag">הרשמה לקורס</p>
+      <h2>מוכנים <span class="gold">להתחיל?</span></h2>
+      <p>מלאו את הפרטים ותועברו לדף תשלום מאובטח.</p>
+    </div>
+    <div style="max-width:660px;">
+      <div style="background:#1a2235;border:2px solid rgba(201,168,75,0.35);border-radius:20px;padding:44px 48px;">
+        
+        <div style="font-size:52px;font-weight:800;color:#c9a84c;margin-bottom:4px;direction:ltr;font-family:'Assistant',sans-serif;">&#8362;4,000</div>
+        <div style="color:#8a9bb8;font-size:14px;margin-bottom:32px;">תשלום מאובטח &middot; Powered by HYP</div>
+        <form id="reg-form" style="display:flex;flex-direction:column;gap:13px;">
+          <input id="r-fn" type="text" placeholder="שם פרטי *" required style="background:#0f1623;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 18px;color:#fff;font-family:'Assistant',sans-serif;font-size:15px;direction:rtl;outline:none;width:100%;box-sizing:border-box;">
+          <input id="r-ln" type="text" placeholder="שם משפחה *" required style="background:#0f1623;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 18px;color:#fff;font-family:'Assistant',sans-serif;font-size:15px;direction:rtl;outline:none;width:100%;box-sizing:border-box;">
+          <input id="r-ph" type="tel" placeholder="טלפון *" required style="background:#0f1623;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 18px;color:#fff;font-family:'Assistant',sans-serif;font-size:15px;direction:rtl;outline:none;width:100%;box-sizing:border-box;">
+          <input id="r-em" type="email" placeholder="אימייל *" required style="background:#0f1623;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 18px;color:#fff;font-family:'Assistant',sans-serif;font-size:15px;direction:rtl;outline:none;width:100%;box-sizing:border-box;">
+          <button id="r-btn" type="submit" style="background:linear-gradient(135deg,#b8882a,#d4a843);color:#1a1200;border:none;border-radius:10px;padding:16px;font-size:17px;font-weight:800;font-family:'Assistant',sans-serif;cursor:pointer;margin-top:6px;">&#x1F4B3; לתשלום מאובטח</button>
+        </form>
+        <p id="r-err" style="color:#ef4444;font-size:14px;margin-top:14px;min-height:18px;"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Sky Next | <a href="https://skynext.co.il/">skynext.co.il</a> | כל הזכויות שמורות</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-question').addEventListener('click', () => {
+    item.classList.toggle('active');
+  });
+});
+
+// Registration form
+var GS_URL = 'https://script.google.com/macros/s/AKfycbwwcIkqZ33VWdMl0PNRXkqKZb9P5rjmMUt3Xx7U5bieTg6lKyHNoDgNfeDi6aHspqJ7ag/exec';
+document.getElementById('reg-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var btn = document.getElementById('r-btn');
+  var errEl = document.getElementById('r-err');
+  btn.textContent = 'מעבד...'; btn.disabled = true; errEl.textContent = '';
+  var fn = document.getElementById('r-fn').value.trim();
+  var ln = document.getElementById('r-ln').value.trim();
+  var ph = document.getElementById('r-ph').value.trim();
+  var em = document.getElementById('r-em').value.trim();
+  try {
+    var token = Math.random().toString(36).substr(2,8).toUpperCase() +
+                Math.random().toString(36).substr(2,8).toUpperCase();
+    await fetch(GS_URL + '?action=saveBuyer' +
+      '&token=' + encodeURIComponent(token) +
+      '&track=25kg' +
+      '&fname=' + encodeURIComponent(fn) +
+      '&lname=' + encodeURIComponent(ln) +
+      '&email=' + encodeURIComponent(em) +
+      '&phone=' + encodeURIComponent(ph));
+    window.location.href = 'purchase.html?pay=25kg' +
+      '&token=' + encodeURIComponent(token) +
+      '&fn=' + encodeURIComponent(fn) +
+      '&ln=' + encodeURIComponent(ln) +
+      '&em=' + encodeURIComponent(em) +
+      '&ph=' + encodeURIComponent(ph);
+  } catch(ex) {
+    errEl.textContent = ex.message;
+    btn.textContent = '💳 לתשלום מאובטח'; btn.disabled = false;
+  }
+});
+</script>
+
+
+<script>
+(async function () {
+  try {
+    const c = await fetch('content.json', { cache: 'no-store' }).then(r => r.json());
+
+    const heroLabel = document.querySelector('.hero-label');
+    const h1 = document.querySelector('.hero-inner h1');
+    const h2 = document.querySelector('.hero-inner h2');
+    const heroP = document.querySelector('.hero-inner > p');
+    const buttons = document.querySelectorAll('.hero-buttons a');
+    const price = document.querySelector('#contact [style*="font-size:52px"]');
+    const stats = document.querySelectorAll('.stat-card');
+
+    if (heroLabel) heroLabel.textContent = c.hero_label;
+    if (h1) h1.innerHTML = `${c.hero_title}<br>${c.hero_title_line2}`;
+    if (h2) h2.textContent = c.hero_subtitle;
+    if (heroP) heroP.textContent = c.hero_description;
+    if (buttons[0]) buttons[0].textContent = c.primary_button;
+    if (buttons[1]) buttons[1].textContent = c.secondary_button;
+    if (price) price.innerHTML = `&#8362;${Number(c.price).toLocaleString('he-IL')}`;
+
+    c.stats.forEach((s, i) => {
+      if (!stats[i]) return;
+      const n = stats[i].querySelector('h3');
+      const t = stats[i].querySelector('p');
+      if (n) n.textContent = s.number;
+      if (t) t.textContent = s.text;
+    });
+
+    const instructorName = document.querySelector('.instructor-name');
+    const instructorTitle = document.querySelector('.instructor-title');
+    if (instructorName) instructorName.textContent = c.instructor_name;
+    if (instructorTitle) instructorTitle.textContent = c.instructor_title;
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    c.faq.forEach((item, i) => {
+      if (!faqItems[i]) return;
+      const q = faqItems[i].querySelector('.faq-question');
+      const a = faqItems[i].querySelector('.faq-answer p');
+      if (q) {
+        const arrow = q.querySelector('.faq-arrow');
+        q.textContent = item.question;
+        if (arrow) q.appendChild(arrow);
+      }
+      if (a) a.textContent = item.answer;
+    });
+  } catch (e) {
+    console.warn('CMS content could not be loaded:', e);
+  }
+})();
+</script>
+
+</body>
+</html>
