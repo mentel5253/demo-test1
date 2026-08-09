@@ -7,47 +7,89 @@ media:
     extensions: [png, jpg, jpeg, webp]
     rename: safe
 
-settings:
-  content:
-    merge: true
-
 content:
-  - name: course
-    label: קורס 25 ק"ג
+  - name: site
+    label: הגדרות האתר
     type: file
-    path: content.json
-    format: json
+    path: content/site.json
     fields:
+      - name: brand
+        label: שם המותג
+        type: string
+      - name: base_url
+        label: כתובת האתר
+        type: string
+      - name: default_language
+        label: שפה
+        type: string
+      - name: default_robots
+        label: Robots
+        type: string
+
+  - name: pages
+    label: דפי אתר
+    type: collection
+    path: content/pages
+    operations:
+      create: true
+      rename: true
+      delete: true
+    fields:
+      - name: seo
+        label: SEO
+        type: object
+        fields:
+          - name: title
+            label: Meta Title
+            type: string
+          - name: description
+            label: Meta Description
+            type: text
+          - name: canonical
+            label: Canonical URL
+            type: string
+          - name: robots
+            label: Robots
+            type: string
+          - name: og_title
+            label: OG Title
+            type: string
+          - name: og_description
+            label: OG Description
+            type: text
+          - name: og_image
+            label: OG Image
+            type: image
+            options:
+              media: images
+              path: media/images
       - name: site
-        label: אתר ותפריט
+        label: ניווט ולוגו
         type: object
         fields:
           - name: logo
             label: לוגו
             type: object
             fields:
-              - name: path
+              - name: src
                 label: קובץ לוגו
                 type: image
                 options:
                   media: images
                   path: media/images
               - name: alt
-                label: טקסט חלופי
+                label: ALT
                 type: string
           - name: home_url
-            label: קישור דף הבית
+            label: קישור בית
             type: string
           - name: home_button
-            label: טקסט כפתור דף הבית
+            label: כפתור בית
             type: string
           - name: nav
-            label: תפריט ניווט
+            label: תפריט
             type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: "{label}"
+            list: true
             fields:
               - name: label
                 label: טקסט
@@ -55,19 +97,18 @@ content:
               - name: href
                 label: קישור
                 type: string
-
       - name: hero
         label: אזור פתיחה
         type: object
         fields:
           - name: label
-            label: תווית עליונה
+            label: תווית
             type: string
           - name: title_line1
-            label: כותרת ראשית - שורה 1
+            label: כותרת 1
             type: string
           - name: title_line2
-            label: כותרת ראשית - שורה 2
+            label: כותרת 2
             type: string
           - name: subtitle
             label: כותרת משנה
@@ -95,14 +136,10 @@ content:
               - name: href
                 label: קישור
                 type: string
-
       - name: stats
-        label: נתונים בולטים
+        label: נתונים
         type: object
-        list:
-          collapsible:
-            collapsed: true
-            summary: "{number} — {text}"
+        list: true
         fields:
           - name: number
             label: מספר
@@ -110,7 +147,6 @@ content:
           - name: text
             label: תיאור
             type: string
-
       - name: about
         label: למה דווקא עכשיו
         type: object
@@ -125,12 +161,9 @@ content:
             label: תיאור
             type: text
           - name: features
-            label: כרטיסי יתרונות
+            label: כרטיסים
             type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: "{title}"
+            list: true
             fields:
               - name: title
                 label: כותרת
@@ -138,7 +171,6 @@ content:
               - name: text
                 label: טקסט
                 type: text
-
       - name: small_uav
         label: מהו כטב"מ קטן
         type: object
@@ -155,7 +187,6 @@ content:
           - name: paragraph2
             label: פסקה 2
             type: text
-
       - name: jobs
         label: אפשרויות תעסוקה
         type: object
@@ -170,10 +201,9 @@ content:
             label: תיאור
             type: text
           - name: items
-            label: תחומי תעסוקה
+            label: תחומים
             type: string
             list: true
-
       - name: why_skynext
         label: למה Sky Next
         type: object
@@ -191,7 +221,6 @@ content:
             label: נקודות
             type: string
             list: true
-
       - name: success_package
         label: מעטפת ההצלחה
         type: object
@@ -206,12 +235,9 @@ content:
             label: תיאור
             type: text
           - name: items
-            label: מרכיבי המעטפת
+            label: סעיפים
             type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: "{title}"
+            list: true
             fields:
               - name: icon
                 label: אייקון
@@ -222,7 +248,6 @@ content:
               - name: text
                 label: טקסט
                 type: text
-
       - name: instructor
         label: המדריך
         type: object
@@ -234,14 +259,13 @@ content:
             label: כותרת
             type: string
           - name: image
-            label: תמונת המדריך
+            label: תמונת מדריך
             type: image
             options:
               media: images
               path: media/images
-              extensions: [jpg, jpeg, png, webp]
           - name: alt
-            label: טקסט חלופי לתמונה
+            label: ALT
             type: string
           - name: name
             label: שם
@@ -249,13 +273,10 @@ content:
           - name: role
             label: תפקיד
             type: string
-          - name: paragraph1
-            label: פסקה 1
+          - name: paragraphs
+            label: טקסט
             type: text
-          - name: paragraph2
-            label: פסקה 2
-            type: text
-
+            list: true
       - name: faq
         label: שאלות ותשובות
         type: object
@@ -267,12 +288,9 @@ content:
             label: כותרת
             type: string
           - name: items
-            label: שאלות ותשובות
+            label: שאלות
             type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: "{question}"
+            list: true
             fields:
               - name: question
                 label: שאלה
@@ -280,7 +298,6 @@ content:
               - name: answer
                 label: תשובה
                 type: text
-
       - name: contact
         label: הרשמה ומחיר
         type: object
@@ -301,25 +318,45 @@ content:
             label: הערת תשלום
             type: string
           - name: payment_button
-            label: טקסט כפתור
+            label: כפתור תשלום
             type: string
-          - name: first_name_placeholder
-            label: שם פרטי
-            type: string
-          - name: last_name_placeholder
-            label: שם משפחה
-            type: string
-          - name: phone_placeholder
-            label: טלפון
-            type: string
-          - name: email_placeholder
-            label: אימייל
-            type: string
-
+          - name: mode
+            label: מצב תשלום
+            type: select
+            options:
+              - label: ניסוי
+                value: demo
+              - label: ייצור
+                value: production
+          - name: fields
+            label: שדות טופס
+            type: object
+            list: true
+            fields:
+              - name: name
+                label: מזהה
+                type: string
+              - name: placeholder
+                label: Placeholder
+                type: string
       - name: footer
-        label: תחתית האתר
+        label: Footer
         type: object
         fields:
           - name: text
-            label: טקסט תחתית
+            label: טקסט
             type: text
+
+settings:
+  content:
+    merge: true
+
+actions:
+  - name: build-site
+    label: בניית האתר
+    workflow: build-site.yml
+    ref: current
+    confirm:
+      title: לבנות את האתר?
+      message: הפעולה תבנה את האתר מחדש ותפרסם אותו בסביבת הניסוי.
+      button: בנייה ופרסום
